@@ -1,0 +1,17 @@
+{
+  "name": "neb2",
+  "title": "Nincraft Electric Boogaloo 2",
+  "gameVersion": "1.7.10",
+  "launch": {
+    "flags": [
+      "-Dfml.ignoreInvalidMinecraftCertificates=true"
+    ]
+  },
+  "userFiles": {
+    "include": [
+      "options.txt",
+      "optionsshaders.txt",
+      "mods/VoxelMods/*"
+    ]
+  }
+}
