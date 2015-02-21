@@ -1,8 +1,8 @@
 ## Custom
 
-modpacks/neb2/src
-modpacks/neb2/loaders
-modpacks/neb2/*.jar
+modpacks/*/src
+modpacks/*/loaders
+modpacks/*/*.jar
 
 ### Eclipse ###
 *.pydevproject

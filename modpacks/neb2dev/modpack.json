@@ -1,6 +1,6 @@
 {
-  "name": "neb2",
-  "title": "Nincraft Electric Boogaloo 2",
+  "name": "neb2-dev",
+  "title": "Nincraft Electric Boogaloo 2 Dev",
   "gameVersion": "1.7.10",
   "launch": {
     "flags": [
