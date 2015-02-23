@@ -2,7 +2,9 @@
 
 modpacks/*/src
 modpacks/*/loaders
+modpacks/*/upload
 modpacks/*/*.jar
+modpacks/*/*.bat
 
 ### Eclipse ###
 *.pydevproject
