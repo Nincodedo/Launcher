@@ -1,10 +1,21 @@
 ## Custom
 
-modpacks/*/src
+modpacks/*/src/*.dat
+modpacks/*/src/mods/*.jar
+modpacks/*/src/mods/**/*.jar
+modpacks/*/src/mods/**/*.zip
+modpacks/*/src/mods/*.zip
+modpacks/*/src/mods/*.dat
+modpacks/*/src/mods/millenaire*
+modpacks/*/src/config
+modpacks/*/src/scripts
+modpacks/*/src/servertools
 modpacks/*/loaders
 modpacks/*/upload
 modpacks/*/*.jar
 modpacks/*/*.bat
+!modpacks/*/src/mods/*.json
+!modpacks/*/src/mods/**/*.json
 
 ### Eclipse ###
 *.pydevproject
