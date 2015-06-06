@@ -1,0 +1,7 @@
+{
+  "feature": {
+    "name": "Sound Filters",
+    "description": "Applies various filters to the sound engine, including occlusion behind walls, and reverb.",
+    "selected": false
+  }
+}
