@@ -4,8 +4,9 @@
  * Please see LICENSE.txt for license information.
  */
 
-package com.skcraft.launcher.buildtools;
+package com.skcraft.launcher.buildtools.compile;
 
+import com.skcraft.launcher.swing.DirectoryField;
 import com.skcraft.launcher.swing.SwingHelper;
 import lombok.Data;
 import lombok.Getter;
@@ -15,9 +16,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 public class BuildDialog extends JDialog {
 
+    private final DirectoryField destDirField = new DirectoryField();
     private final JTextField versionText = new JTextField(20);
     private final JTextField manifestFilenameText = new JTextField(30);
     private final JCheckBox cleanCheck = new JCheckBox("Delete previously generated files first");
@@ -31,7 +34,7 @@ public class BuildDialog extends JDialog {
         initComponents();
         setResizable(false);
         pack();
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(parent);
     }
 
     private void initComponents() {
@@ -44,7 +47,10 @@ public class BuildDialog extends JDialog {
         container.add(new JLabel("Manifest Filename:"));
         container.add(manifestFilenameText, "span");
 
-        container.add(cleanCheck, "span, gapbottom 20");
+        container.add(new JLabel("Output Directory:"));
+        container.add(destDirField, "span");
+
+        container.add(cleanCheck, "span, gapbottom unrel");
 
         JButton buildButton = new JButton("Build...");
         JButton cancelButton = new JButton("Cancel");
@@ -83,14 +89,20 @@ public class BuildDialog extends JDialog {
             return;
         }
 
-        options = new BuildOptions(version, manifestFilename, cleanCheck.isSelected());
+        if (destDirField.getPath().isEmpty()) {
+            SwingHelper.showErrorDialog(this, "A destination directory must be entered.", "Error");
+            return;
+        }
+
+        options = new BuildOptions(version, manifestFilename, cleanCheck.isSelected(), new File(destDirField.getPath()));
         dispose();
     }
 
-    public static BuildOptions showBuildDialog(Window parent, String version, String manifestName) {
+    public static BuildOptions showBuildDialog(Window parent, String version, String manifestName, File destDir) {
         BuildDialog dialog = new BuildDialog(parent);
         dialog.versionText.setText(version);
         dialog.manifestFilenameText.setText(manifestName);
+        dialog.destDirField.setPath(destDir.getAbsolutePath());
         dialog.setVisible(true);
         return dialog.getOptions();
     }
@@ -100,6 +112,7 @@ public class BuildDialog extends JDialog {
         private final String version;
         private final String manifestFilename;
         private final boolean clean;
+        private final File destDir;
     }
 
 }

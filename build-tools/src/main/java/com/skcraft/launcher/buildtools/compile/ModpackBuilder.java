@@ -4,7 +4,7 @@
  * Please see LICENSE.txt for license information.
  */
 
-package com.skcraft.launcher.buildtools;
+package com.skcraft.launcher.buildtools.compile;
 
 import com.skcraft.concurrency.ProgressObservable;
 import com.skcraft.launcher.LauncherException;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 
-class ModpackBuilder implements Callable<ModpackBuilder>, ProgressObservable {
+public class ModpackBuilder implements Callable<ModpackBuilder>, ProgressObservable {
 
     private final File inputDir;
     private final File outputDir;
