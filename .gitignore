@@ -16,6 +16,7 @@ modpacks/*/*.jar
 modpacks/*/*.bat
 !modpacks/*/src/mods/*.json
 !modpacks/*/src/mods/**/*.json
+/installer/
 
 ### Eclipse ###
 *.pydevproject
