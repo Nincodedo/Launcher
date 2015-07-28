@@ -6,6 +6,8 @@
 
 package com.skcraft.launcher.creator.dialog;
 
+import com.jidesoft.swing.SearchableUtils;
+import com.jidesoft.swing.TableSearchable;
 import com.skcraft.launcher.creator.Creator;
 import com.skcraft.launcher.swing.DefaultTable;
 import com.skcraft.launcher.swing.SwingHelper;
@@ -47,6 +49,7 @@ public class PackManagerFrame extends JFrame {
     @Getter private final JMenuItem deployServerMenuItem = new JMenuItem("Deploy Server...");
     @Getter private final JMenuItem generatePackagesMenuItem = new JMenuItem("Generate packages.json...");
     @Getter private final JMenuItem openOutputFolderMenuItem = new JMenuItem("Open Upload Folder");
+    @Getter private final JMenuItem versionCheckMenuItem = new JMenuItem("Check for Mod Updates");
     @Getter private final JMenuItem openWorkspaceFolderMenuItem = new JMenuItem("Open Workspace Folder");
     @Getter private final JMenuItem openLauncherFolderMenuItem = new JMenuItem("Open Test Launcher Folder");
     @Getter private final JMenuItem openWebRootMenuItem = new JMenuItem("Open Test Web Server Folder");
@@ -81,6 +84,9 @@ public class PackManagerFrame extends JFrame {
 
         container.add(createToolbar(), "dock north");
         container.add(SwingHelper.wrapScrollPane(packTable), "grow, span, w null:800:null");
+
+        TableSearchable tableSearchable = SearchableUtils.installSearchable(packTable);
+        tableSearchable.setMainIndex(-1);
 
         add(container, BorderLayout.CENTER);
     }
@@ -176,6 +182,8 @@ public class PackManagerFrame extends JFrame {
         menu.setMargin(menuInset);
         menu.setMnemonic('t');
         menuBar.add(menu);
+        menu.add(versionCheckMenuItem);
+        menu.addSeparator();
         menu.add(openWorkspaceFolderMenuItem);
         menu.add(openLauncherFolderMenuItem);
         menu.add(openWebRootMenuItem);
