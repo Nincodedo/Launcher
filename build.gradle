@@ -52,6 +52,6 @@ subprojects {
 
 task jsonFilter(type: Copy){
 	from 'modpacks/launcher'
-	into 'build'
+	into 'launcher/build'
 	filter(org.apache.tools.ant.filters.ReplaceTokens,tokens:['VERSION': config.version])
 }
