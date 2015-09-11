@@ -1,0 +1,8 @@
+{
+  "feature": {
+    "name": "Dynamic Lights",
+    "description": "Makes various light sources more, well, dynamic.  This includes held torches, mobs that are on fire, etc.  Almost necessary with the darkness being so, well, dark.",
+    "recommendation": "starred",
+    "selected": true
+  }
+}

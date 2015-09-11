@@ -1,0 +1,7 @@
+{
+  "feature": {
+    "name": "Item Physics",
+    "description": "Gives dropped items more of a physical presence in the world.  Rather than just floating around on the ground, items will now flip around in the air and lay flat on the ground.",
+    "selected": true
+  }
+}
