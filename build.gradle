@@ -32,7 +32,7 @@ subprojects {
     apply plugin: 'maven'
 
     group = 'com.skcraft'
-    version = config.version
+    version = "${config.version}+${System.getenv("BUILD_NUMBER") ?: "SNAPSHOT"}"
 
     sourceCompatibility = 1.6
     targetCompatibility = 1.6
