@@ -26,14 +26,14 @@ configFile.withReader {
     project.ext.config = new ConfigSlurper().parse prop
 }
 
-version = "${config.version}+${System.getenv("BUILD_NUMBER") ?: "SNAPSHOT"}"
+version = "${config.version}-${System.getenv("BUILD_NUMBER") ?: "SNAPSHOT"}"
 
 subprojects {
     apply plugin: 'java'
     apply plugin: 'maven'
 
     group = 'com.skcraft'
-    version = "${config.version}+${System.getenv("BUILD_NUMBER") ?: "SNAPSHOT"}"
+    version = "${config.version}-${System.getenv("BUILD_NUMBER") ?: "SNAPSHOT"}"
 
     sourceCompatibility = 1.6
     targetCompatibility = 1.6
