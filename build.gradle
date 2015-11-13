@@ -26,13 +26,14 @@ configFile.withReader {
     project.ext.config = new ConfigSlurper().parse prop
 }
 
+version = "${config.version}-${System.getenv("BUILD_NUMBER") ?: "SNAPSHOT"}"
 
 subprojects {
     apply plugin: 'java'
     apply plugin: 'maven'
 
     group = 'com.skcraft'
-    version = config.version
+    version = "${config.version}-${System.getenv("BUILD_NUMBER") ?: "SNAPSHOT"}"
 
     sourceCompatibility = 1.6
     targetCompatibility = 1.6
@@ -53,5 +54,6 @@ subprojects {
 task jsonFilter(type: Copy){
 	from 'modpacks/launcher'
 	into 'launcher/build'
-	filter(org.apache.tools.ant.filters.ReplaceTokens,tokens:['VERSION': config.version])
+
+    expand 'version':project.version
 }
