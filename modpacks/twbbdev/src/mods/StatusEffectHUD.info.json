@@ -1,0 +1,7 @@
+{
+  "feature": {
+    "name": "Status Effect HUD",
+    "description": "Adds current status effect icons to your HUD",
+    "selected": false
+  }
+}

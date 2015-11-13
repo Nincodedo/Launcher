@@ -1,0 +1,7 @@
+{
+  "feature": {
+    "name": "Dynamic Lights",
+    "description": "Makes 'shining' items (default: Torch, Glowstone, Glowdust, Lit Pumpkin, Redstone, Lava Bucket, powered Minecart) illuminate everything around them",
+    "selected": true
+  }
+}

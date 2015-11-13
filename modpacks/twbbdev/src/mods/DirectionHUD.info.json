@@ -1,0 +1,7 @@
+{
+  "feature": {
+    "name": "Direction HUD",
+    "description": "Adds a nice little compass to your HUD",
+    "selected": false
+  }
+}

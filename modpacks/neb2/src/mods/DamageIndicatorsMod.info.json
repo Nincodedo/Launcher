@@ -1,0 +1,7 @@
+{
+  "feature": {
+    "name": "Damage Indicators",
+    "description": "Shows damage dealt on screen",
+    "selected": true
+  }
+}

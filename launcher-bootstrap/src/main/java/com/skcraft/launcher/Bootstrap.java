@@ -146,19 +146,40 @@ public class Bootstrap {
         Method method = clazz.getDeclaredMethod("main", String[].class);
         String[] launcherArgs;
 
-        if (portable) {
-            launcherArgs = new String[] {
-                    "--portable",
-                    "--dir",
-                    baseDir.getAbsolutePath(),
-                    "--bootstrap-version",
-                    String.valueOf(BOOTSTRAP_VERSION) };
-        } else {
-            launcherArgs = new String[] {
-                    "--dir",
-                    baseDir.getAbsolutePath(),
-                    "--bootstrap-version",
-                    String.valueOf(BOOTSTRAP_VERSION)  };
+        boolean hasDir = false;
+        for(String s : originalArgs){
+        	if(s.equals("--dir")){
+        		hasDir = true;
+        	}
+        }
+        
+        if(!hasDir){
+        	if (portable) {
+                launcherArgs = new String[] {
+                        "--portable",
+                        "--dir",
+                        baseDir.getAbsolutePath(),
+                        "--bootstrap-version",
+                        String.valueOf(BOOTSTRAP_VERSION) };
+            } else {
+                launcherArgs = new String[] {
+                        "--dir",
+                        baseDir.getAbsolutePath(),
+                        "--bootstrap-version",
+                        String.valueOf(BOOTSTRAP_VERSION)  };
+            }
+        }
+        else{
+        	if (portable) {
+                launcherArgs = new String[] {
+                        "--portable",
+                        "--bootstrap-version",
+                        String.valueOf(BOOTSTRAP_VERSION) };
+            } else {
+                launcherArgs = new String[] {
+                        "--bootstrap-version",
+                        String.valueOf(BOOTSTRAP_VERSION)  };
+            }
         }
 
         String[] args = new String[originalArgs.length + launcherArgs.length];

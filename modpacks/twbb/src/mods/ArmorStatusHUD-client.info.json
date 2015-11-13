@@ -1,0 +1,7 @@
+{
+  "feature": {
+    "name": "ArmorStatus HUD",
+    "description": "Shows your armor durability on your HUD",
+    "selected": false
+  }
+}

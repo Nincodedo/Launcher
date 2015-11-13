@@ -1,0 +1,4 @@
+{
+    "version": "${version}",
+    "url": "http://play.nincraft.com/launcher/versions/launcher-fancy-${version}-all.jar.pack"
+}
