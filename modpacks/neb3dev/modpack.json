@@ -1,0 +1,17 @@
+{
+  "name": "neb3-dev",
+  "title": "Nincraft Electric Boogaloo 3 Dev",
+  "gameVersion": "1.8.9",
+  "launch": {
+    "flags": [
+      "-Dfml.ignoreInvalidMinecraftCertificates=true"
+    ]
+  },
+  "userFiles": {
+    "include": [
+      "options.txt",
+      "optionsshaders.txt",
+      "mods/VoxelMods/*"
+    ]
+  }
+}
