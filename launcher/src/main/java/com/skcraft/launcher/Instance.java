@@ -126,7 +126,7 @@ public class Instance implements Comparable<Instance> {
 
     @Override
     public String toString() {
-        return name;
+        return getTitle();
     }
 
     @Override
