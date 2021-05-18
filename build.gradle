@@ -1,3 +1,19 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+
+    dependencies {
+    	classpath "com.github.jengelman.gradle.plugins:shadow:2.0.1"
+    }
+}
+
+plugins {
+    id "com.github.johnrengelman.shadow" version "4.0.4"
+    id 'io.freefair.lombok' version '5.3.0'
+}
+
 println """
 *******************************************
  You are building SKCraft Launcher! 
@@ -6,41 +22,18 @@ println """
 *******************************************
 """
 
-buildscript {
-    repositories {
-        mavenCentral()
-        jcenter()
-    }
-
-    dependencies {
-        classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.0'
-    }
-}
-
-ext.configFile = file "build.properties"
-
-configFile.withReader {
-    // Load config.  It shall from now be referenced as simple config or poject.config
-    def prop = new Properties()
-    prop.load(it)
-    project.ext.config = new ConfigSlurper().parse prop
-}
-
-version = "${config.version}-${System.getenv("BUILD_NUMBER") ?: "SNAPSHOT"}"
-
 subprojects {
     apply plugin: 'java'
     apply plugin: 'maven'
 
     group = 'com.skcraft'
-    version = "${config.version}-${System.getenv("BUILD_NUMBER") ?: "SNAPSHOT"}"
+    version = '4.5-SNAPSHOT'
 
-    sourceCompatibility = 1.6
-    targetCompatibility = 1.6
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
 
     repositories {
         mavenCentral()
-        maven { url "http://repo.maven.apache.org/maven2" }
     }
 
     if (JavaVersion.current().isJava8Compatible()) {
@@ -49,11 +42,15 @@ subprojects {
             options.addStringOption('Xdoclint:none', '-quiet')
         }
     }
+
+    tasks.withType(JavaExec) {
+        workingDir = new File(rootDir, "run/")
+        workingDir.mkdirs()
+    }
 }
 
-task jsonFilter(type: Copy){
-	from 'modpacks/launcher'
-	into 'launcher/build'
-
-    expand 'version':project.version
+task clean {
+    subprojects {
+        rootProject.clean.dependsOn tasks.matching { it.name == "clean" }
+    }
 }

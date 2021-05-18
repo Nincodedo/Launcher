@@ -1,8 +1,14 @@
-apply plugin: 'com.github.johnrengelman.shadow'
+plugins {
+    id 'application'
+    id "com.github.johnrengelman.shadow"
+    id 'io.freefair.lombok'
+}
 
-version = "2.0.2-SNAPSHOT"
+version = "2.1.0-SNAPSHOT"
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
+
+mainClassName = "com.skcraft.launcher.creator.Creator"
 
 dependencies {
     compile project(':launcher-builder')
@@ -18,16 +24,7 @@ processResources {
     }
 }
 
-jar {
-    manifest {
-        attributes("Main-Class": "com.skcraft.launcher.creator.Creator")
-    }
-}
-
 shadowJar {
-    dependencies {
-        exclude(dependency('org.projectlombok:lombok'))
-    }
 }
 
 build.dependsOn(shadowJar)

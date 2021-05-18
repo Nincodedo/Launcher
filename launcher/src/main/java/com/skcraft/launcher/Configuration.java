@@ -28,13 +28,16 @@ public class Configuration {
     private int maxMemory = 0; // Updated in Launcher
     private int permGen = 256;
     private int windowWidth = 854;
-    private int widowHeight = 480;
+    private int windowHeight = 480;
     private boolean proxyEnabled = false;
     private String proxyHost = "localhost";
     private int proxyPort = 8080;
     private String proxyUsername;
     private String proxyPassword;
     private String gameKey;
+    private boolean serverEnabled = false;
+    private String serverHost;
+    private int serverPort = 25565;
 
     @Override
     public boolean equals(Object o) {
@@ -46,4 +49,10 @@ public class Configuration {
         return super.hashCode();
     }
 
+    /**
+     * Backwards compatibility for old configs with the misspelling.
+     */
+    public void setWidowHeight(int height) {
+        this.windowHeight = height;
+    }
 }

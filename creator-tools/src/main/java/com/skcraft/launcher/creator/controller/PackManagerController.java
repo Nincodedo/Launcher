@@ -21,18 +21,18 @@ import com.skcraft.launcher.auth.Session;
 import com.skcraft.launcher.builder.BuilderConfig;
 import com.skcraft.launcher.builder.FnPatternList;
 import com.skcraft.launcher.creator.Creator;
-import com.skcraft.launcher.creator.model.creator.*;
 import com.skcraft.launcher.creator.controller.task.*;
 import com.skcraft.launcher.creator.dialog.*;
 import com.skcraft.launcher.creator.dialog.BuildDialog.BuildOptions;
 import com.skcraft.launcher.creator.dialog.DeployServerDialog.DeployOptions;
+import com.skcraft.launcher.creator.model.creator.*;
 import com.skcraft.launcher.creator.model.swing.PackTableModel;
 import com.skcraft.launcher.creator.server.TestServer;
 import com.skcraft.launcher.creator.server.TestServerBuilder;
 import com.skcraft.launcher.creator.swing.PackDirectoryFilter;
+import com.skcraft.launcher.dialog.AccountSelectDialog;
 import com.skcraft.launcher.dialog.ConfigurationDialog;
 import com.skcraft.launcher.dialog.ConsoleFrame;
-import com.skcraft.launcher.dialog.LoginDialog;
 import com.skcraft.launcher.dialog.ProgressDialog;
 import com.skcraft.launcher.model.modpack.LaunchModifier;
 import com.skcraft.launcher.persistence.Persistence;
@@ -225,7 +225,7 @@ public class PackManagerController {
         if (config.isOfflineEnabled()) {
             return true;
         } else {
-            Session session = LoginDialog.showLoginRequest(frame, launcher);
+            Session session = AccountSelectDialog.showAccountRequest(frame, launcher);
             if (session != null) {
                 config.setOfflineEnabled(true);
                 Persistence.commitAndForget(config);
@@ -734,7 +734,7 @@ public class PackManagerController {
         Session session;
 
         if (online) {
-            session = LoginDialog.showLoginRequest(frame, launcher);
+            session = AccountSelectDialog.showAccountRequest(frame, launcher);
             if (session == null) {
                 return;
             }
@@ -748,7 +748,7 @@ public class PackManagerController {
 
         String version = generateVersionFromDate();
 
-        PackBuilder builder = new PackBuilder(pack, webRoot, version, "staging.json", false);
+        PackBuilder builder = new PackBuilder(pack, webRoot, version, "staging.json", false, false);
         InstanceList.Enumerator enumerator = launcher.getInstances().createEnumerator();
         TestLauncher instanceLauncher = new TestLauncher(launcher, frame, pack.getCachedConfig().getName(), session);
 
@@ -773,7 +773,7 @@ public class PackManagerController {
 
         if (options != null) {
             ConsoleFrame.showMessages();
-            PackBuilder builder = new PackBuilder(pack, options.getDestDir(), options.getVersion(), options.getManifestFilename(), false);
+            PackBuilder builder = new PackBuilder(pack, options.getDestDir(), options.getVersion(), options.getManifestFilename(), false, true);
             Deferred<?> deferred = Deferreds.makeDeferred(executor.submit(builder), executor)
                     .handleAsync(result -> {
                         ConsoleFrame.hideMessages();
