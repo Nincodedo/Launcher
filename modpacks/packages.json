@@ -1,0 +1,12 @@
+{
+  "minimumVersion" : 1,
+  "packages" : [
+    {
+      "title" : "Nincraft Reborn",
+      "name" : "Nincraft Reborn",
+      "version" : "0.0.1",
+      "location" : "nincraft-reborn.json",
+      "priority" : 0
+    }
+  ]
+}
