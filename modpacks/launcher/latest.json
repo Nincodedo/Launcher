@@ -1,4 +1,4 @@
 {
-    "version": "${version}",
-    "url": "http://play.nincraft.com/launcher/versions/launcher-fancy-${version}-all.jar.pack"
+    "version": "4.5",
+    "url": "https://storage.googleapis.com/nincraft-cdn/launcher/versions/nincraft-launcher-4.5.jar"
 }
